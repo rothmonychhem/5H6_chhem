@@ -1,11 +1,11 @@
-<?php $this->titre = 'Le Blogue du prof'; ?>
+<?php $this->titre = 'myAdidas'; ?>
 
-<?php foreach ($articles as $article):
+<?php foreach ($transactions as $transaction):
     ?>
 
     <article>
         <header>
-            <a href="Articles/lire/<?= $article['id'] ?>">
+            <a href="Transaction/lire/<?= $article['id'] ?>">
                 <h1 class="titreArticle"><?= $article['titre'] ?></h1>
             </a>
             <strong class=""><?= $article['sous_titre'] ?></strong>

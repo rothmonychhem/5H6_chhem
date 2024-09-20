@@ -1,8 +1,8 @@
-<?php $this->titre = "Le Blogue du prof - Connexion" ?>
+<?php $this->titre = "MyAdidas - Connexion" ?>
 
-<p>Vous devez être en session pour accéder à cette zone.</p>
+<p>veuillez connecter a votre compte</p>
 
-<form action="Utilisateurs/connecter" method="post">
+<form action="Accounts/connecter" method="post">
     <input name="login" type="text" placeholder="Entrez votre login" required autofocus>
     <input name="mdp" type="password" placeholder="Entrez votre mot de passe" required>
     <button type="submit">Connexion</button>
