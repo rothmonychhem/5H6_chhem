@@ -3,7 +3,7 @@
 <p>veuillez connecter a votre compte</p>
 
 <form action="Accounts/connecter" method="post">
-    <input name="login" type="text" placeholder="Entrez votre login" required autofocus>
+    <input name="courriel" type="text" placeholder="Entrez votre courriel" required autofocus>
     <input name="mdp" type="password" placeholder="Entrez votre mot de passe" required>
     <button type="submit">Connexion</button>
 </form>
