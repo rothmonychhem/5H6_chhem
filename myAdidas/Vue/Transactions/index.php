@@ -1,19 +1,15 @@
-<?php $this->titre = 'myAdidas'; ?>
 
-<?php foreach ($transactions as $transaction):
-    ?>
+<h1>Historique des Transactions</h1>
 
-    <article>
-        <header>
-            <a href="Transaction/lire/<?= $article['id'] ?>">
-                <h1 class="titreArticle"><?= $article['titre'] ?></h1>
-            </a>
-            <strong class=""><?= $article['sous_titre'] ?></strong>
-            <time><?= $article['date'] ?></time>, par utilisateur #<?= $article['utilisateur_id'] ?>
-        </header>
-        <p><?= $article['texte'] ?><br/>
-            <em><?= $article['type'] ?></em>
-        </p>
-    </article>
-    <hr />
-<?php endforeach; ?>    
+<?php if (empty($transactions)): ?>
+    <p>Vous n'avez effectué aucune transaction.</p>
+<?php else: ?>
+    <ul>
+        <?php foreach ($transactions as $transaction): ?>
+            <li>
+                Transaction ID: <?= $transaction['id'] ?> - Total: <?= $transaction['total_price'] ?> € - 
+                Statut: <?= $transaction['validation'] ? 'Validée' : 'En attente' ?>
+            </li>
+        <?php endforeach; ?>
+    </ul>
+<?php endif; ?>
