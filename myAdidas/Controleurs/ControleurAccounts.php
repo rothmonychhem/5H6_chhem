@@ -38,9 +38,9 @@ abstract class ControleurAccount extends Controleur {
             $email = $this->requete->getParametre("email");
             $password = $this->requete->getParametre("password");
             if ($this->account->connecter($email, $password)) {
-                $account = $this->account->getUtilisateur($email, $password);
+                $account = $this->account->getAccountByEmail($email, $password);
                 $this->requete->getSession()->setAttribut("account", $account);
-                // Éliminer un code d'erreur éventuel
+             
                 if ($this->requete->getSession()->existeAttribut('erreur')) {
                     $this->requete->getsession()->setAttribut('erreur', '');
                 }
