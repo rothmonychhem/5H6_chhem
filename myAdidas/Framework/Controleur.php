@@ -33,16 +33,16 @@ abstract class Controleur {
      * 
      * @throws Exception Si l'action n'existe pas dans la classe Controleur courante
      */
-    public function executerAction($action) {
+    //modifier la méthode pour accepter un tableau de paramètres 
+    public function executerAction($action, $params = array()) {
         if (method_exists($this, $action)) {
             $this->action = $action;
-            $this->{$this->action}();
+            call_user_func_array(array($this, $this->action), $params);
         } else {
             $classeControleur = get_class($this);
             throw new Exception("Action '$action' non définie dans la classe $classeControleur");
         }
     }
-
     /**
      * Méthode abstraite correspondant à l'action par défaut
      * Oblige les classes dérivées à implémenter cette action par défaut

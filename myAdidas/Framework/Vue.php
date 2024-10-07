@@ -45,15 +45,10 @@ class Vue {
         // Nécessaire pour les URI de type controleur/action/id
         $racineWeb = Configuration::get("racineWeb", "/");
         // Génération du gabarit commun utilisant la partie spécifique
-        $donnees_gabarit = [
-            'titre' => $this->titre, 'contenu' => $contenu,
-            'racineWeb' => $racineWeb,
-            'message' => $donnees['message']
-        ];
-        // On ajoute l'utilisateur en session s'il y a lieu
-        if (isset($donnees['utilisateur']))
-            $donnees_gabarit['utilisateur'] = $donnees['utilisateur'];
-        $vue = $this->genererFichier('Vue/gabarit.php', $donnees_gabarit);
+        $vue = $this->genererFichier('Vue/gabarit.php',
+                array('titre' => $this->titre, 'contenu' => $contenu,
+                    'racineWeb' => $racineWeb,
+                    'message' => $donnees['message']));
         // Renvoi de la vue générée au navigateur
         echo $vue;
     }
@@ -77,7 +72,8 @@ class Vue {
             require $fichier;
             // Arrêt de la temporisation et renvoi du tampon de sortie
             return ob_get_clean();
-        } else {
+        }
+        else {
             throw new Exception("Fichier '$fichier' introuvable");
         }
     }

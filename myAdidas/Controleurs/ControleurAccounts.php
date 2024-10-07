@@ -8,7 +8,7 @@ abstract class ControleurAccount extends Controleur {
 
     private $account;
 
-    public function executerAction($action) {
+    public function executerAction($action , $params = array()) {
        
         if ($this->requete->getSession()->existeAttribut("account")){
             $this->account = $this->requete->getSession()->getAttribut("account");
