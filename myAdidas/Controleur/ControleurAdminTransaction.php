@@ -6,31 +6,37 @@ require_once 'Framework/Vue.php';
 
 class ControleurAdminTransaction extends Controleur
 {
+    private $cart;
+    private $transaction;
 
-  private $cart;
-  private $transaction;
+    public function __construct()
+    {
+        $this->cart = new Cart();
+        $this->transaction = new Transaction();
+    }
 
-  public function __construct()
-  {
-    $this->cart = new Cart();
-    $this->transaction = new Transaction();
-  }
+  
+    public function index()
+    {
+        $cartId = $this->requete->getParametre("id");
+        $cart = $this->cart->getCartById($cartId);
 
-  // Affiche les détails d'un cart et ses réservations
-  public function index()
-  {
-    $idCart = $this->requete->getParametre("id");
-    $cart = $this->cart->getCartById($idCart);
-    $transaction = $this->transaction->getTransactionById($idCart);
-    $this->genererVue(array(
-      'cart' => $cart,
-      'transaction' => $transaction
-    ));
-  }
+       
+        if ($cart) {
+            $transaction = $this->transaction->getUserTransactions($cart['user_id']); 
 
+            $this->genererVue(array(
+                'cart' => $cart,
+                'transactions' => $transaction 
+            ));
+        } else {
+        
+            $this->requete->getSession()->setAttribut('error', 'Cart not found.');
+            $this->rediriger("someController", "index"); 
+        }
+    }
 
+  
 }
-
-
 
 ?>

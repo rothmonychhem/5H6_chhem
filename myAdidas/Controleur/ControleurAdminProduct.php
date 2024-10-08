@@ -5,39 +5,43 @@ require_once 'Framework/Vue.php';
 
 class ControleurAdminProduct extends Controleur {
 
-  private $product;
+    private $product;
 
-  public function __construct() {
-    $this->product = new Product();
-  }
-
-  // Méthode index pour afficher la page d'administration des films
-  public function index() {
-    
-    $films = $this->product->getAllProducts();
-    $this->genererVue(array('films' => $films));
-  }
-  // Ajoute un nouveau product
-  public function createProduct() {
-
-    $productName = $this->requete->getParametre("productName");
-    $annee = $this->requete->getParametre("annee");
-    $genre = $this->requete->getParametre("genre");
-    $price = $this->requete->getParametre("price");
-    $category = $this->requete->getParametre("category");
-    $type = $this->requete->getParametre("type");
-    $targetAudience = $this->requete->getParametre("targetAudience");
-    $possibleColors = $this->requete->getParametre("possibleColors");
-    $images = $this->requete->getParametre("images");
-    $collection = $this->requete->getParametre("collection");
-    $quantity = $this->requete->getParametre("quantity");
-
-    if ($productName && $annee && $genre && $price && $category && $type && $targetAudience && $possibleColors && $images && $collection && $quantity) {
-      $this->product->createProduct($productName, $price, $category, $type, $targetAudience, $possibleColors, $images, $collection, $quantity);
-      // Utilisation de la méthode rediriger pour la redirection
-      $this->rediriger("adminProduct", "index");
-    } else {
-      throw new Exception("Tous les paramètres sont requis pour ajouter un product.");
+    public function __construct() {
+        $this->product = new Product();
     }
-  }
+
+    // Method to display the product administration page
+    public function index() {
+        $products = $this->product->getAllProducts(); // Renamed to 'products'
+        $this->genererVue(array('products' => $products));
+    }
+
+    // Add a new product
+    public function createProduct() {
+        $productName = $this->requete->getParametre("productName");
+        $year = $this->requete->getParametre("year");
+        $genre = $this->requete->getParametre("genre");
+        $price = $this->requete->getParametre("price");
+        $category = $this->requete->getParametre("category");
+        $type = $this->requete->getParametre("type");
+        $targetAudience = $this->requete->getParametre("targetAudience");
+        $possibleColors = $this->requete->getParametre("possibleColors");
+        $images = $this->requete->getParametre("images");
+        $collection = $this->requete->getParametre("collection");
+        $quantity = $this->requete->getParametre("quantity");
+
+        // Validate parameters
+        if ($productName && $year && $genre && $price && $category && $type && $targetAudience && $possibleColors && $images && $collection && $quantity) {
+            $this->product->createProduct($productName, $price, $category, $type, $targetAudience, $possibleColors, $images, $collection, $quantity);
+            $this->rediriger("adminProduct", "index");
+        } else {
+    
+            $this->requete->getSession()->setAttribut('error', 'All fields are required to add a product.');
+            $this->rediriger("adminProduct", "index");
+        }
+    }
+
+    
 }
+?>

@@ -44,7 +44,7 @@ abstract class ControleurAccount extends Controleur {
                 if ($this->requete->getSession()->existeAttribut('erreur')) {
                     $this->requete->getsession()->setAttribut('erreur', '');
                 }
-                $this->rediriger("AdminArticles");//???
+                $this->rediriger("AdminProduct");
             } else {
                 $this->requete->getSession()->setAttribut('erreur', 'password');
                 $this->rediriger('Account');

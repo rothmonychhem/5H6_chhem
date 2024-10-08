@@ -20,4 +20,4 @@
     <button type="submit">Ajouter au Panier</button>
 </form>
 
-<a href="Product/index">Retour à la liste des produits</a>
+<a href="Products/index">Retour à la liste des produits</a>

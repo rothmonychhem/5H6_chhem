@@ -1,3 +1,4 @@
+<?php $this->titre = "MyAdidas - Historique des Transactions"; ?>
 
 <h1>Historique des Transactions</h1>
 

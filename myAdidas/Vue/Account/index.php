@@ -1,6 +1,6 @@
 <?php $this->titre = "MyAdidas - Connexion" ?>
 
-<p>veuillez connecter a votre compte</p>
+<p>Veuillez vous connecter à votre compte</p>
 
 <form action="Account/connecter" method="post">
     <input name="email" type="text" placeholder="Entrez votre courriel" required autofocus>
@@ -8,5 +8,4 @@
     <button type="submit">Connexion</button>
 </form>
 
-<?= ($erreur == 'password') ? '<span style="color : red;">Login ou mot de passe incorrects</span>' : '' ?> 
-        
+<?= ($erreur == 'password') ? '<span>Login ou mot de passe incorrects</span>' : '' ?> 

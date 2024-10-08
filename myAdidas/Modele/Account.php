@@ -24,7 +24,7 @@ class Account extends Modele {
         return false;
     }
 
-        /**
+    /**
      * Vérifie qu'un utilisateur existe dans la BD
      * 
      * @param string $email Le login
@@ -33,9 +33,12 @@ class Account extends Modele {
      */
     public function connecter($email, $password)
     {
-        $sql = "select id from accounts where email = ? and password = ?";
-        $account = $this->executerRequete($sql, array($email, $password));
-        return ($account->rowCount() == 1);
+        $account = $this->getAccountByEmail($email);
+        // Check if account exists and password matches
+        if ($account && password_verify($password, $account['password'])) {
+            return true; // Return true if password is correct
+        }
+        return false; // Otherwise return false
     }
 }
 ?>

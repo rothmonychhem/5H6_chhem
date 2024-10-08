@@ -7,7 +7,17 @@ class Product extends Modele {
     public function createProduct($productName, $price, $category, $type, $targetAudience, $possibleColors, $images, $collection, $quantity) {
         $sql = "INSERT INTO products (productName, price, category, type, targetAudience, possibleColors, images, collection, quantity)
                 VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
-        $params = [$productName, $price, $category, $type, $targetAudience, $possibleColors, $images, $collection, $quantity];
+        $params = [
+            $productName,
+            $price,
+            $category,
+            $type,
+            $targetAudience,
+            json_encode($possibleColors), // Assuming this is an array
+            json_encode($images), // Assuming this is an array
+            $collection,
+            $quantity
+        ];
         $this->executerRequete($sql, $params);
     }
 
@@ -21,13 +31,29 @@ class Product extends Modele {
     public function getProductById($id) {
         $sql = "SELECT * FROM products WHERE id = ?";
         $params = [$id];
-        return $this->executerRequete($sql, $params)->fetch(PDO::FETCH_ASSOC);
+        $product = $this->executerRequete($sql, $params)->fetch(PDO::FETCH_ASSOC);
+        if ($product) {
+            $product['possibleColors'] = json_decode($product['possibleColors'], true);
+            $product['images'] = json_decode($product['images'], true);
+        }
+        return $product;
     }
 
     // Update a product's details
     public function updateProduct($id, $productName, $price, $category, $type, $targetAudience, $possibleColors, $images, $collection, $quantity) {
         $sql = "UPDATE products SET productName=?, price=?, category=?, type=?, targetAudience=?, possibleColors=?, images=?, collection=?, quantity=? WHERE id=?";
-        $params = [$productName, $price, $category, $type, $targetAudience, $possibleColors, $images, $collection, $quantity, $id];
+        $params = [
+            $productName,
+            $price,
+            $category,
+            $type,
+            $targetAudience,
+            json_encode($possibleColors), // Store as JSON
+            json_encode($images), // Store as JSON
+            $collection,
+            $quantity,
+            $id
+        ];
         $this->executerRequete($sql, $params);
     }
 
@@ -37,7 +63,5 @@ class Product extends Modele {
         $params = [$id];
         $this->executerRequete($sql, $params);
     }
-
-    
 }
 ?>

@@ -10,7 +10,7 @@ class ControleurProduct extends Controleur {
     public function index() {
         $productModel = new Product();
         $products = $productModel->getAllProducts();
-        $this->genererVue(['product' => $products]);
+        $this->genererVue(['products' => $products]); 
     }
 
     // Fetch a specific product's details
@@ -20,28 +20,39 @@ class ControleurProduct extends Controleur {
         if ($product) {
             $this->genererVue(['product' => $product]);
         } else {
-            $this->rediriger('Product', 'index');
+            $this->rediriger('Product', 'index'); 
         }
     }
 
     // Logic to add product to cart
-    public function add() {
+    public function addProduct() {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $productId = $_POST['productId'];
-            $quantity = $_POST['quantity'];
+            $productId = $this->requete->getParametre('productId');
+            $quantity = $this->requete->getParametre('quantity');
 
-            $cartModel = new Cart(); 
-            $cartModel->addProductToCart($this->requete->getSession()->getAttribut('user')['id'], $productId, $quantity);
-            $this->rediriger('Cart', 'index');
+            // Input validation
+            if (isset($productId, $quantity) && is_numeric($quantity) && $quantity > 0) {
+                $cartModel = new Cart(); 
+                $cartModel->addProductToCart($this->requete->getSession()->getAttribut('user')['id'], $productId, $quantity);
+           
+                $this->rediriger('Cart', 'index');
+            } else {
+                
+                $this->requete->getSession()->setAttribut('error', 'Invalid product ID or quantity.');
+                $this->rediriger('Product', 'index'); 
+            }
         }
     }
 
     // Logic to remove product from cart
-    public function remove() {
+    public function removeProduct() {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $productId = $_POST['productId'];
-            $cartModel = new Cart(); 
-            $cartModel->removeProductFromCart($this->requete->getSession()->getAttribut('user')['id'], $productId);
+            $productId = $this->requete->getParametre('productId');
+            if ($productId) {
+                $cartModel = new Cart(); 
+                $cartModel->removeProductFromCart($this->requete->getSession()->getAttribut('user')['id'], $productId);
+               
+            }
             $this->rediriger('Cart', 'index'); 
         }
     }
