@@ -37,5 +37,7 @@ class Product extends Modele {
         $params = [$id];
         $this->executerRequete($sql, $params);
     }
+
+    
 }
 ?>

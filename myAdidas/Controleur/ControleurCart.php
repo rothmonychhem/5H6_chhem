@@ -33,5 +33,8 @@ class ControleurCart extends Controleur {
             $this->rediriger('Cart', 'index'); 
         }
     }
+
+   
+
 }
 ?>

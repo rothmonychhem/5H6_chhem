@@ -30,5 +30,7 @@ class ControleurTransaction extends Controleur {
         $transactionModel->validateTransaction($transactionId);
         $this->rediriger('Transaction', 'index'); 
     }
+
+
 }
 ?>
