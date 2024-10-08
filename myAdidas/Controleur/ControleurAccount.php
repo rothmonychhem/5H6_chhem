@@ -14,7 +14,7 @@ abstract class ControleurAccount extends Controleur {
             $this->account = $this->requete->getSession()->getAttribut("account");
             parent::executerAction($action);
         } else {
-            $this->rediriger('Accounts');
+            $this->rediriger('Account');
         }
     }
 
@@ -44,10 +44,10 @@ abstract class ControleurAccount extends Controleur {
                 if ($this->requete->getSession()->existeAttribut('erreur')) {
                     $this->requete->getsession()->setAttribut('erreur', '');
                 }
-                $this->rediriger("AdminArticles");
+                $this->rediriger("AdminArticles");//???
             } else {
                 $this->requete->getSession()->setAttribut('erreur', 'password');
-                $this->rediriger('Accounts');
+                $this->rediriger('Account');
             }
         } else
             throw new Exception("Action impossible : email ou mot de passe non défini");

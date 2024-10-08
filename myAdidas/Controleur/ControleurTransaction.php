@@ -3,13 +3,13 @@
 require_once 'Framework/Controleur.php';
 require_once 'Modele/Transaction.php';
 
-class TransactionsControleur extends Controleur {
+class ControleurTransaction extends Controleur {
 
     // Display all transactions for the logged-in user
     public function index() {
         $transactionModel = new Transaction();
         $transactions = $transactionModel->getUserTransactions($this->requete->getSession()->getAttribut('user')['id']);
-        $this->genererVue(['transactions' => $transactions]);
+        $this->genererVue(['transaction' => $transactions]);
     }
     
     // Display a specific transaction by ID
@@ -20,7 +20,7 @@ class TransactionsControleur extends Controleur {
             $this->genererVue(['transaction' => $transaction]);
         } else {
            
-            $this->rediriger('Transactions', 'index'); 
+            $this->rediriger('Transaction', 'index'); 
         }
     }
 
@@ -28,7 +28,7 @@ class TransactionsControleur extends Controleur {
     public function validate($transactionId) {
         $transactionModel = new Transaction();
         $transactionModel->validateTransaction($transactionId);
-        $this->rediriger('Transactions', 'index'); 
+        $this->rediriger('Transaction', 'index'); 
     }
 }
 ?>

@@ -13,7 +13,7 @@
                     <?php foreach ($cart['items'] as $item): ?> <!-- Assuming $cart['items'] holds the product data -->
                         <li>
                             <?= htmlspecialchars($item['productName']) ?> - Prix: <?= htmlspecialchars($item['price']) ?> €
-                            <a href="Products/remove/<?= $item['id'] ?>">Supprimer</a>
+                            <a href="Product/remove/<?= $item['id'] ?>">Supprimer</a>
                         </li>
                     <?php endforeach; ?>
                 </ul>

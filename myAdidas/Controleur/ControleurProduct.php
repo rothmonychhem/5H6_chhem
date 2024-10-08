@@ -4,13 +4,13 @@ require_once 'Framework/Controleur.php';
 require_once 'Modele/Product.php';
 require_once 'Modele/Cart.php';
 
-class ProductsControleur extends Controleur {
+class ControleurProduct extends Controleur {
 
     // Display all products
     public function index() {
         $productModel = new Product();
         $products = $productModel->getAllProducts();
-        $this->genererVue(['products' => $products]);
+        $this->genererVue(['product' => $products]);
     }
 
     // Fetch a specific product's details
@@ -20,7 +20,7 @@ class ProductsControleur extends Controleur {
         if ($product) {
             $this->genererVue(['product' => $product]);
         } else {
-            $this->rediriger('Products', 'index');
+            $this->rediriger('Product', 'index');
         }
     }
 
@@ -32,7 +32,7 @@ class ProductsControleur extends Controleur {
 
             $cartModel = new Cart(); 
             $cartModel->addProductToCart($this->requete->getSession()->getAttribut('user')['id'], $productId, $quantity);
-            $this->rediriger('Carts', 'index');
+            $this->rediriger('Cart', 'index');
         }
     }
 
@@ -42,7 +42,7 @@ class ProductsControleur extends Controleur {
             $productId = $_POST['productId'];
             $cartModel = new Cart(); 
             $cartModel->removeProductFromCart($this->requete->getSession()->getAttribut('user')['id'], $productId);
-            $this->rediriger('Carts', 'index'); 
+            $this->rediriger('Cart', 'index'); 
         }
     }
 }

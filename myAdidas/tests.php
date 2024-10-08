@@ -33,9 +33,9 @@ if (isset($_GET['test'])) {
         <a href="tests.php?test=erreur">Test pour la vue d'erreur</a>
     </li>
     <li>
-        <a href="tests.php?test=products">Test pour la vue de produit</a>
+        <a href="tests.php?test=product">Test pour la vue de produit</a>
     </li>
     <li>
-        <a href="tests.php?test=transactions">Test pour la vue de transaction </a>
+        <a href="tests.php?test=transaction">Test pour la vue de transaction </a>
     </li>
 </ul>

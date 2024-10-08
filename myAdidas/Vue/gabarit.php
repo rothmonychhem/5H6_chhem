@@ -16,7 +16,7 @@
                 <a href=""><h1 id="titre"><span data-i18n="myAdidas">myAdidas</span> v1.0.0.1</h1></a>
                 <p>Version avec démarrage de session pour accès aux opérations de gestion</p>
                 <a href="<?= $utilisateur != null ? 'Admin' : ''; ?>Commentaires">
-                    <h4>Afficher tous les commentaires de tous les articles</h4>
+                    
                 </a>
                 <a href="Apropos">
                     <h4>À propos</h4>

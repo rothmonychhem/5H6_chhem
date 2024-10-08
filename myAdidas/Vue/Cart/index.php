@@ -8,7 +8,7 @@
     <ul>
         <?php foreach ($carts as $cart): ?>
             <li>
-                <a href="Carts/read/<?= $cart['id'] ?>">Voir le panier <?= $cart['id'] ?> - Total: <?= $cart['total_price'] ?> €</a>
+                <a href="Cart/read/<?= $cart['id'] ?>">Voir le panier <?= $cart['id'] ?> - Total: <?= $cart['total_price'] ?> €</a>
             </li>
         <?php endforeach; ?>
     </ul>

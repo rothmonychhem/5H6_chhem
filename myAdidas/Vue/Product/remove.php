@@ -1,3 +1,4 @@
+<?php>
 public function remove() {
     // Check if the request is POST
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -10,3 +11,4 @@ public function remove() {
         // Redirect or load a view confirming removal
     }
 }
+

@@ -3,7 +3,7 @@
 require_once 'Framework/Controleur.php';
 require_once 'Modele/Cart.php';
 
-class CartsControleur extends Controleur {
+class ControleurCart extends Controleur {
 
     // Display the cart for the logged-in user
     public function index() {
@@ -20,7 +20,7 @@ class CartsControleur extends Controleur {
 
             $cartModel = new Cart();
             $cartModel->addProductToCart($this->requete->getSession()->getAttribut('user')['id'], $productId, $quantity);
-            $this->rediriger('Carts', 'index');
+            $this->rediriger('Cart', 'index');
         }
     }
 
@@ -30,7 +30,7 @@ class CartsControleur extends Controleur {
             $productId = $_POST['productId'];
             $cartModel = new Cart();
             $cartModel->removeProductFromCart($this->requete->getSession()->getAttribut('user')['id'], $productId);
-            $this->rediriger('Carts', 'index'); 
+            $this->rediriger('Cart', 'index'); 
         }
     }
 }

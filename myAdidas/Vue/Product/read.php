@@ -13,11 +13,11 @@
 
 <h2>Ajouter au Panier</h2>
 
-<form action="Carts/add" method="post"> <!-- Adjust the action to your cart handling -->
+<form action="Cart/add" method="post"> <!-- Adjust the action to your cart handling -->
     <input type="hidden" name="productId" value="<?= $product['id'] ?>">
     <label for="quantity">Quantité:</label>
     <input id="quantity" name="quantity" type="number" min="1" max="<?= $product['quantity'] ?>" required>
     <button type="submit">Ajouter au Panier</button>
 </form>
 
-<a href="Products/index">Retour à la liste des produits</a>
+<a href="Product/index">Retour à la liste des produits</a>
